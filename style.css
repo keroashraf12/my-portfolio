@@ -1,43 +1,113 @@
-:root {
-    --primary: #3b82f6;       
-    --primary-dark: #2563eb;
-    --secondary: #10b981;     
-    --accent: #8b5cf6;        
-    
-    --bg-main: #f3f4f6;
-    --bg-card: #ffffff;
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-    --border: #e5e7eb;
-    
-    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-    --radius: 16px;
-    --font-main: 'Outfit', sans-serif;
+:root{
+    --bg: #f6f8fb;
+    --primary: #3b82f6;
+    --muted: #6b7280;
+    --accent: #7c3aed;
+    --accent-2: #06b6d4;
+    --glass: rgba(255,255,255,0.65);
+    --glass-2: rgba(14,22,33,0.6);
+    --card-shadow: 0 6px 20px rgba(16,24,40,0.06);
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --glass-border: 1px solid rgba(255,255,255,0.06);
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Noto Sans Mono", monospace;
 }
 
-[data-theme="dark"] {
-    --bg-main: #111827;     
-    --bg-card: #1f2937;       
-    --text-main: #f9fafb;
-    --text-muted: #9ca3af;
-    --border: #374151;
-    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+body.dark-mode{
+    --bg: #0f1724;
+    --muted: #9ca3af;
+    --accent: #8b5cf6;
+    --accent-2: #06b6d4;
+    --glass: rgba(255,255,255,0.03);
+    --glass-2: rgba(255,255,255,0.02);
+    --card-shadow: 0 10px 30px rgba(2,6,23,0.55);
+    --glass-border: 1px solid rgba(255,255,255,0.03);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body {
-    font-family: var(--font-main);
-    background: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.5;
-    transition: background 0.3s, color 0.3s;
-    padding-bottom: 60px;
-    overflow-x: hidden;
+*{box-sizing:border-box}
+html,body{height:100%;}
+body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg,var(--bg), #fff 60%);
+    color: #0f1724;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
 }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+body.dark-mode{color:#e6eef8}
 
+.container{max-width:1100px;margin:32px auto;padding:0 20px}
+.grid{display:grid;gap:20px}
+
+.hero{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.hero-left{flex:1}
+.hero-right{width:280px}
+.hero h1{font-size:1.6rem;margin:0 0 8px}
+.hero p{margin:0;color:var(--muted)}
+
+.card{
+    background: linear-gradient(180deg,var(--glass), transparent);
+    border-radius:var(--radius-md);
+    padding:16px;
+    box-shadow:var(--card-shadow);
+    border:var(--glass-border);
+    backdrop-filter: blur(8px);
+}
+
+.calculator-container{
+    display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:12px;align-items:stretch;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.32));
+}
+body.dark-mode .calculator-container{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04));
+}
+.calculator-row{display:flex;gap:12px;align-items:center}
+.input,select{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);background:transparent}
+.input:focus{outline:none;box-shadow:0 6px 18px rgba(99,102,241,0.12)}
+.total-price-display{margin-top:8px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(255,255,255,0.02));font-weight:700;font-size:1.1rem;display:flex;justify-content:space-between;align-items:center}
+
+.window-frame{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,0.06)}
+.window-header{background:linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.5));padding:8px 12px;display:flex;gap:8px;align-items:center}
+.window-btn{width:11px;height:11px;border-radius:9999px}
+.window-body{padding:12px;background:linear-gradient(180deg, rgba(250,250,255,0.7), rgba(250,250,255,0.45))}
+body.dark-mode .window-header{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));}
+body.dark-mode .window-body{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+
+.guestbook-container{display:flex;flex-direction:column;gap:12px}
+.message-list{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow:auto;padding-right:6px}
+.message-bubble{padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.32));border:1px solid rgba(0,0,0,0.04)}
+body.dark-mode .message-bubble{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.02)}
+.message-meta{font-size:12px;color:var(--muted)}
+
+.chart-card{padding:12px;border-radius:12px}
+canvas{display:block; width:100% !important; height:240px !important}
+
+.kv{color:var(--muted);font-size:12px}
+.center{display:flex;align-items:center;justify-content:center}
+.badge{padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;font-weight:600}
+
+.toast{position:fixed;right:20px;bottom:20px;padding:10px 14px;border-radius:10px;background:#111;color:#fff;z-index:9999}
+
+h2{font-size:1.1rem;margin:0 0 8px}
+small{font-size:0.86rem;color:var(--muted)}
+
+@media(min-width:700px){
+    .hero{gap:30px}
+    .hero h1{font-size:2rem}
+    .grid{grid-template-columns:1fr 360px}
+    .calculator-container{flex-direction:column}
+}
+
+@media(min-width:1000px){
+    .grid{grid-template-columns:1fr 360px 320px}
+}
+
+@media(max-width:420px){
+    .hero-right{display:none}
+    body{padding-bottom:40px}
+}
 .navbar {
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
@@ -47,6 +117,13 @@ body {
 .nav-content { display: flex; justify-content: space-between; align-items: center; }
 
 .brand { display: flex; align-items: center; gap: 12px; }
+.profile-pic {
+    width: 45px;      
+    height: 45px;     
+    border-radius: 50%; 
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
 .logo-icon { 
     background: var(--primary); color: white; 
     width: 36px; height: 36px; border-radius: 10px; 
