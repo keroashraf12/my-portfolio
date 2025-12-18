@@ -1,225 +1,234 @@
-const powerSwitch = document.getElementById('power-switch');
-const clickSound = document.getElementById('click-sound');
-const greetingElement = document.getElementById('smart-greeting');
+document.addEventListener('DOMContentLoaded', () => {
 
-powerSwitch.addEventListener('change', () => {
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeBtn.querySelector('i');
+    const clockEl = document.getElementById('live-clock');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
 
-    document.body.classList.toggle('dark-mode');
-    
-    if (powerSwitch.checked) {
-        document.body.style.transform = "scale(1.005)";
-        setTimeout(() => document.body.style.transform = "scale(1)", 100);
+    themeBtn.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const newTheme = current === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+        showToast(newTheme === 'dark' ? 'Dark Mode On 🌙' : 'Light Mode On ☀️', 'info');
+    });
+
+    function updateIcon(theme) {
+        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     }
-});
-function setSmartGreeting() {
+
+    setInterval(() => {
+        const now = new Date();
+        clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: false });
+    }, 1000);
+
     const hour = new Date().getHours();
-    const date = new Date();
-    const isBirthday = date.getDate() === 6 && date.getMonth() === 11; 
+    const greetEl = document.getElementById('greeting-text');
+    let msg = "Welcome back, Engineer";
+    if (hour < 12) msg = "Good Morning, Sir";
+    else if (hour < 18) msg = "Good Afternoon, Sir";
+    else msg = "Good Evening, Sir";
+    greetEl.innerText = msg;
 
-    if (isBirthday) {
-        greetingElement.innerText = "🎉 Happy Birthday to Me! 🎉";
-        greetingElement.style.color = "gold";
-    } else if (hour < 12) {
-        greetingElement.innerText = "Good Morning, Engineer.";
-    } else if (hour < 18) {
-        greetingElement.innerText = "Good Afternoon.";
-    } else {
-        greetingElement.innerText = "Good Evening, Coder.";
-    }
-}
-
-setSmartGreeting();
-
-
-const username = "keroashraf12"; 
-const statsContainer = document.getElementById('stats-container');
-
-async function fetchGitHubStats() {
-    try {
+    function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
         
-        const response = await fetch(`https://api.github.com/users/${username}`);
-        const data = await response.json();
+        let icon = type === 'success' ? 'check-circle' : 'info-circle';
+        if(type === 'error') icon = 'exclamation-circle';
+        
+        toast.innerHTML = `<i class="fas fa-${icon}"></i> <span>${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.style.animation = 'slideIn 0.3s reverse forwards';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
 
-        if (data.message === "Not Found") {
-            statsContainer.innerHTML = "❌ User not found";
-            return;
+
+    async function loadStats() {
+        const container = document.getElementById('stats-container');
+        const username = "keroashraf12"; 
+        
+        try {
+            await new Promise(r => setTimeout(r, 1500)); 
+            
+            const res = await fetch(`https://api.github.com/users/${username}`);
+            if(!res.ok) throw new Error();
+            const data = await res.json();
+
+            container.innerHTML = `
+                <div class="stat-card">
+                    <div class="icon-box blue"><i class="fas fa-folder"></i></div>
+                    <div><span class="stat-value">${data.public_repos}</span><span class="stat-label">Projects</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box green"><i class="fas fa-users"></i></div>
+                    <div><span class="stat-value">${data.followers}</span><span class="stat-label">Followers</span></div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box purple"><i class="fas fa-code"></i></div>
+                    <div><span class="stat-value">Online</span><span class="stat-label">Status</span></div>
+                </div>
+            `;
+        } catch {
+            container.innerHTML = `<p style="color:red; padding:20px;">API Error (Check Internet)</p>`;
+        }
+    }
+    loadStats();
+
+
+    const calcBtn = document.getElementById('do-calc');
+    const historyList = document.getElementById('history-list');
+
+    if(calcBtn) {
+        calcBtn.addEventListener('click', () => {
+            const price = parseFloat(document.getElementById('calc-price').value);
+            const qty = parseFloat(document.getElementById('calc-qty').value);
+
+            if (price && qty) {
+                const total = price * qty;
+                                const li = document.createElement('li');
+                li.innerHTML = `<span>${qty} x ${price}</span> <strong>${total.toLocaleString()} EGP</strong>`;
+                                if(historyList.querySelector('.empty-hint')) historyList.innerHTML = '';
+                
+                historyList.prepend(li);
+                showToast(`Result: ${total.toLocaleString()} EGP`);
+            } else {
+                showToast('Please enter valid numbers', 'error');
+            }
+        });
+    }
+
+
+    const estInputs = document.querySelectorAll('#est-type, #est-db, #est-api');
+    const estTotal = document.getElementById('est-total');
+
+    function calculateEst() {
+        let total = parseInt(document.getElementById('est-type').value) || 0;
+        if (document.getElementById('est-db').checked) total += parseInt(document.getElementById('est-db').value);
+        if (document.getElementById('est-api').checked) total += parseInt(document.getElementById('est-api').value);
+        
+        estTotal.innerHTML = `${total.toLocaleString()} <small>EGP</small>`;
+    }
+    estInputs.forEach(el => el.addEventListener('change', calculateEst));
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyB47U_HoMgBD2UGAtaZmbJ4D-C0OOPL_Ek",
+        authDomain: "kerullus-portfolio.firebaseapp.com",
+        projectId: "kerullus-portfolio",
+        storageBucket: "kerullus-portfolio.firebasestorage.app",
+        messagingSenderId: "159934978422",
+        appId: "1:159934978422:web:b51c0ba691b13e2a940257",
+        measurementId: "G-JWX6S4CTGQ",
+        databaseURL: "https://kerullus-portfolio-default-rtdb.firebaseio.com"
+    };
+
+    if (typeof firebase !== 'undefined') {
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const ref = db.ref('guestbook_messages');
+
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag]));
         }
 
-        statsContainer.innerHTML = `
-            <div class="stat-card">
-                <i class="fab fa-github"></i>
-                <span class="stat-number">${data.public_repos}</span>
-                <span class="stat-label">Public Repos</span>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-users"></i>
-                <span class="stat-number">${data.followers}</span>
-                <span class="stat-label">Followers</span>
-            </div>
-            <div class="stat-last-update">
-                Last active: ${new Date(data.updated_at).toLocaleDateString()}
-            </div>
-        `;
 
-        animateNumbers();
+        ref.limitToLast(20).on('child_added', (snap) => {
+            const data = snap.val();
+            const feed = document.getElementById('messages-feed');
+            
+            const spinner = feed.querySelector('.loading-spinner');
+            if(spinner) spinner.remove();
 
-    } catch (error) {
-        console.error("Error fetching stats:", error);
-        statsContainer.innerHTML = "⚠️ Failed to load stats";
-    }
-}
+            const div = document.createElement('div');
+            div.className = 'message-bubble';
+            
+            div.innerHTML = `
+                <div class="msg-meta">
+                    <strong>${escapeHTML(data.name)}</strong>
+                    <span>Just now</span>
+                </div>
+                <div class="msg-text">${escapeHTML(data.message)}</div>
+            `;
+            feed.prepend(div);
+        });
+        
 
-function animateNumbers() {
-    const numbers = document.querySelectorAll('.stat-number');
-    numbers.forEach(num => {
-        const target = +num.innerText;
-        const increment = target / 20; 
-        let current = 0;
-
-        const updateCount = () => {
-            current += increment;
-            if(current < target) {
-                num.innerText = Math.ceil(current);
-                setTimeout(updateCount, 40);
-            } else {
-                num.innerText = target;
-            }
-        };
-        updateCount();
-    });
-}
-
-fetchGitHubStats();
-
-
-const projectType = document.getElementById('project-type');
-const addDatabase = document.getElementById('add-database');
-const addDesign = document.getElementById('add-design');
-const addUrgent = document.getElementById('add-urgent');
-const finalPriceDisplay = document.getElementById('final-price');
-
-function calculatePrice() {
-
-    let price = parseInt(projectType.value, 10);
-
-
-    if (addDatabase.checked) {
-        price += parseInt(addDatabase.value, 10);
-    }
-    if (addDesign.checked) {
-        price += parseInt(addDesign.value, 10);
+    try {
+        const chartEl = document.getElementById('myChart');
+        if (chartEl && typeof Chart !== 'undefined') {
+            new Chart(chartEl, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Contributions',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59,130,246,0.08)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });  
+            chartEl.style.minHeight = '160px';
+        } else if (!chartEl) {
+            console.warn('Chart canvas (#myChart) not found in DOM.');
+        } else {
+            console.warn('Chart.js is not loaded.');
+        }
+    } catch (e) {
+        console.error('Failed to initialize chart:', e);
     }
 
-
-    if (addUrgent.checked) {
-        price = price * parseFloat(addUrgent.value);
+    try {
+        if (typeof Typed !== 'undefined') {
+            var typed = new Typed('#typed-text', {
+                strings: ['Software Engineer.', 'Web Developer.', 'Problem Solver.'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true
+            });
+        } else {
+            console.warn('Typed.js not loaded.');
+        }
+    } catch (e) {
+        console.error('Typed.js init error:', e);
     }
+        const sendBtn = document.getElementById('gb-send');
+        if(sendBtn) {
+            sendBtn.addEventListener('click', () => {
+                const nameIn = document.getElementById('gb-name');
+                const msgIn = document.getElementById('gb-msg');
 
-    finalPriceDisplay.innerText = price.toLocaleString(); 
-    
-    finalPriceDisplay.parentElement.style.transform = "scale(1.05)";
-    setTimeout(() => {
-        finalPriceDisplay.parentElement.style.transform = "scale(1)";
-    }, 200);
-}
-
-[projectType, addDatabase, addDesign, addUrgent].forEach(element => {
-    element.addEventListener('change', calculatePrice);
-});
-
-calculatePrice();
-
-
-function calculateTex() {
-    const price = parseFloat(document.getElementById('tex-price').value) || 0;
-    const qty = parseFloat(document.getElementById('tex-qty').value) || 0;
-    const discount = parseFloat(document.getElementById('tex-discount').value) || 0;
-    const consoleDiv = document.getElementById('tex-output');
-
-    consoleDiv.innerHTML = "> Processing order...<br>";
-
-    setTimeout(() => {
-        const subtotal = price * qty;
-        const discountValue = subtotal * (discount / 100);
-        const total = subtotal - discountValue;
-
-        consoleDiv.innerHTML += `
-            > -------------------------<br>
-            > Subtotal: ${subtotal} EGP<br>
-            > Discount: -${discountValue} EGP<br>
-            > <strong>TOTAL: ${total} EGP</strong><br>
-            > -------------------------<br>
-            > Status: Order Confirmed ✅
-        `;
-    }, 500); 
-}
-
-
-const firebaseConfig = {
-    apiKey: "AIzaSyB47U_HoMgBD2UGAtaZmbJ4D-C0OOPL_Ek",
-    authDomain: "kerullus-portfolio.firebaseapp.com",
-    projectId: "kerullus-portfolio",
-    storageBucket: "kerullus-portfolio.firebasestorage.app",
-    messagingSenderId: "159934978422",
-    appId: "1:159934978422:web:b51c0ba691b13e2a940257",
-    measurementId: "G-JWX6S4CTGQ",
-    databaseURL: "https://kerullus-portfolio-default-rtdb.firebaseio.com" 
-};
-
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-} else {
-    firebase.app();
-}
-
-const db = firebase.database();
-const messagesRef = db.ref('guestbook_messages');
-
-function sendMessage() {
-    const nameInput = document.getElementById('guest-name');
-    const msgInput = document.getElementById('guest-msg');
-    
-    const name = nameInput.value.trim();
-    const msg = msgInput.value.trim();
-
-    if (name === "" || msg === "") {
-        alert("Please enter both name and message!");
-        return;
+                if(nameIn.value.trim() && msgIn.value.trim()) {
+                    ref.push().set({ 
+                        name: nameIn.value.trim(), 
+                        message: msgIn.value.trim(), 
+                        timestamp: Date.now() 
+                    });
+                    msgIn.value = ''; 
+                    showToast('Message sent successfully!');
+                } else {
+                    showToast('Please fill all fields', 'error');
+                }
+            });
+        }
     }
-
-    const newMsgRef = messagesRef.push();
-    newMsgRef.set({
-        name: name,
-        message: msg,
-        timestamp: Date.now()
-    }).then(() => {
-        console.log("Message Sent!");
-    }).catch((error) => {
-        console.error("Error sending message: ", error);
-        alert("Error: " + error.message);
-    });
-
-    msgInput.value = "";
-}
-
-const msgList = document.getElementById('messages-list');
-
-messagesRef.on('child_added', (snapshot) => {
-    if(document.querySelector('.msg-loading')) {
-        document.querySelector('.msg-loading').remove();
-    }
-
-    const data = snapshot.val();
-    const date = new Date(data.timestamp).toLocaleTimeString();
-    const msgDiv = document.createElement('div');
-    msgDiv.classList.add('message-bubble');
-    msgDiv.innerHTML = `
-        <div class="msg-header">
-            <span class="msg-name">${data.name}</span>
-            <span class="msg-time">${date}</span>
-        </div>
-        <div class="msg-text">${data.message}</div>
-    `;
-
-    msgList.prepend(msgDiv);
 });
