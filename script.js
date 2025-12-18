@@ -1,86 +1,101 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const html = document.documentElement;
+    // 1. Theme Toggle (Robust for Mobile)
     const themeBtn = document.getElementById('theme-toggle');
-    const themeIcon = themeBtn.querySelector('i');
-    const clockEl = document.getElementById('live-clock');
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    html.setAttribute('data-theme', savedTheme);
-    updateIcon(savedTheme);
+    const themeIcon = themeBtn ? themeBtn.querySelector('i') : null;
+    
+    // Load Saved Theme safely
+    try {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            if(themeIcon) themeIcon.className = 'fas fa-sun';
+        }
+    } catch(e) { console.log('Local storage blocked'); }
 
-    themeBtn.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme');
-        const newTheme = current === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateIcon(newTheme);
-        showToast(newTheme === 'dark' ? 'Dark Mode On 🌙' : 'Light Mode On ☀️', 'info');
+    if(themeBtn) themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        
+        // Update Icon
+        if(themeIcon) themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        
+        // Show Toast
+        showToast(isDark ? 'Dark Mode 🌙' : 'Light Mode ☀️');
+
+        // Save safely
+        try {
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        } catch(e) {}
     });
 
-    function updateIcon(theme) {
-        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    // 2. Clock
+    const clockEl = document.getElementById('live-clock');
+    if(clockEl) {
+        setInterval(() => {
+            const now = new Date();
+            clockEl.innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }, 1000);
     }
 
-    setInterval(() => {
-        const now = new Date();
-        clockEl.innerText = now.toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
-
+    // 3. Greeting
     const hour = new Date().getHours();
     const greetEl = document.getElementById('greeting-text');
-    let msg = "Welcome back, Engineer";
-    if (hour < 12) msg = "Good Morning, Sir";
+    let msg = "Welcome back";
+    if (hour < 12) msg = "Good Morning, Engineer";
     else if (hour < 18) msg = "Good Afternoon, Sir";
     else msg = "Good Evening, Sir";
-    greetEl.innerText = msg;
+    if(greetEl) greetEl.innerText = msg;
 
-    function showToast(message, type = 'success') {
+    // 4. Toast Function
+    function showToast(message) {
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        
-        let icon = type === 'success' ? 'check-circle' : 'info-circle';
-        if(type === 'error') icon = 'exclamation-circle';
-        
-        toast.innerHTML = `<i class="fas fa-${icon}"></i> <span>${message}</span>`;
+        toast.className = 'toast';
+        toast.innerHTML = `<span>${message}</span>`;
         container.appendChild(toast);
+        
+        // Remove after 2.5s
         setTimeout(() => {
-            toast.style.animation = 'slideIn 0.3s reverse forwards';
+            toast.style.opacity = '0';
             setTimeout(() => toast.remove(), 300);
-        }, 3000);
+        }, 2500);
     }
 
-
+    // 5. GitHub Stats
     async function loadStats() {
         const container = document.getElementById('stats-container');
         const username = "keroashraf12"; 
         
         try {
+            // Fake loading effect
+            await new Promise(r => setTimeout(r, 1000)); 
+            
             const res = await fetch(`https://api.github.com/users/${username}`);
             if(!res.ok) throw new Error();
             const data = await res.json();
 
             container.innerHTML = `
                 <div class="stat-card">
-                    <div class="icon-box blue"><i class="fas fa-folder"></i></div>
-                    <div><span class="stat-value">${data.public_repos}</span><span class="stat-label">Projects</span></div>
+                    <span class="stat-value">${data.public_repos}</span>
+                    <span class="stat-label">Projects</span>
                 </div>
                 <div class="stat-card">
-                    <div class="icon-box green"><i class="fas fa-users"></i></div>
-                    <div><span class="stat-value">${data.followers}</span><span class="stat-label">Followers</span></div>
+                    <span class="stat-value">${data.followers}</span>
+                    <span class="stat-label">Followers</span>
                 </div>
                 <div class="stat-card">
-                    <div class="icon-box purple"><i class="fas fa-code"></i></div>
-                    <div><span class="stat-value">Online</span><span class="stat-label">Status</span></div>
+                    <span class="stat-value">Active</span>
+                    <span class="stat-label">Status</span>
                 </div>
             `;
         } catch {
-            container.innerHTML = `<p style="color:red; padding:10px;">Offline</p>`;
+            container.innerHTML = `<p style="font-size:0.8rem; padding:10px; color:red">Offline</p>`;
         }
     }
     loadStats();
 
-
+    // 6. Tools Logic (Calculator)
     const calcBtn = document.getElementById('do-calc');
     const historyList = document.getElementById('history-list');
 
@@ -92,18 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (price && qty) {
                 const total = price * qty;
                 const li = document.createElement('li');
-                li.innerHTML = `<span>${qty} x ${price}</span> <strong>${total.toLocaleString()} EGP</strong>`;
-                if(historyList.querySelector('.empty-hint')) historyList.innerHTML = '';
+                li.innerHTML = `<span style="font-size:0.9rem">${qty} x ${price}</span> <strong>${total.toLocaleString()}</strong>`;
                 
+                if(historyList.querySelector('.empty-hint')) historyList.innerHTML = '';
                 historyList.prepend(li);
-                showToast(`Result: ${total.toLocaleString()} EGP`);
+                showToast(`Total: ${total.toLocaleString()} EGP`);
             } else {
-                showToast('Please enter valid numbers', 'error');
+                showToast('Enter valid numbers');
             }
         });
     }
 
-
+    // 7. Tools Logic (Estimator)
     const estInputs = document.querySelectorAll('#est-type, #est-db, #est-api');
     const estTotal = document.getElementById('est-total');
 
@@ -116,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     estInputs.forEach(el => el.addEventListener('change', calculateEst));
 
+    // 8. Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyB47U_HoMgBD2UGAtaZmbJ4D-C0OOPL_Ek",
         authDomain: "kerullus-portfolio.firebaseapp.com",
@@ -132,15 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const db = firebase.database();
         const ref = db.ref('guestbook_messages');
 
-
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, tag => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-            }[tag]));
-        }
-
-
-        ref.limitToLast(20).on('child_added', (snap) => {
+        ref.limitToLast(10).on('child_added', (snap) => {
             const data = snap.val();
             const feed = document.getElementById('messages-feed');
             
@@ -149,66 +157,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const div = document.createElement('div');
             div.className = 'message-bubble';
+            const safeName = data.name ? data.name.replace(/</g, "&lt;") : 'User';
+            const safeMsg = data.message ? data.message.replace(/</g, "&lt;") : '...';
             
             div.innerHTML = `
-                <div class="msg-meta">
-                    <strong>${escapeHTML(data.name)}</strong>
-                    <span>Just now</span>
-                </div>
-                <div class="msg-text">${escapeHTML(data.message)}</div>
+                <div class="msg-meta">${safeName}</div>
+                <div class="msg-text">${safeMsg}</div>
             `;
             feed.prepend(div);
         });
-        
 
+        // Chart.js Init (Safe)
         try {
             const chartEl = document.getElementById('myChart');
             if (chartEl && typeof Chart !== 'undefined') {
                 new Chart(chartEl, {
-                    type: 'line',
+                    type: 'bar', // غيرت لـ bar عشان أوضح في الموبايل
                     data: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr'],
                         datasets: [{
-                            label: 'Contributions',
-                            data: [12, 19, 3, 5, 2, 3],
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59,130,246,0.08)',
-                            tension: 0.4,
-                            fill: true
+                            label: 'Activity',
+                            data: [12, 19, 8, 15],
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 4
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        scales: {
-                            y: { beginAtZero: true }
-                        }
+                        plugins: { legend: { display: false } },
+                        scales: { y: { beginAtZero: true, grid: { display: false } } }
                     }
                 });  
             }
-        } catch (e) {
-            console.error('Failed to initialize chart:', e);
-        }
+        } catch (e) {}
 
+        // Typed.js (Safe)
         try {
             if (typeof Typed !== 'undefined') {
-                var typed = new Typed('#typed-text', {
-                    strings: ['Software Engineer.', 'Web Developer.', 'Problem Solver.'],
+                new Typed('#typed-text', {
+                    strings: ['Software Engineer.', 'Web Developer.', 'Creative.'],
                     typeSpeed: 50,
                     backSpeed: 30,
-                    loop: true
+                    loop: true,
+                    showCursor: false // Cursor makes layout jump sometimes
                 });
             }
-        } catch (e) {
-            console.error('Typed.js init error:', e);
-        }
+        } catch (e) {}
 
+        // Send Msg
         const sendBtn = document.getElementById('gb-send');
         if(sendBtn) {
             sendBtn.addEventListener('click', () => {
                 const nameIn = document.getElementById('gb-name');
                 const msgIn = document.getElementById('gb-msg');
-
                 if(nameIn.value.trim() && msgIn.value.trim()) {
                     ref.push().set({ 
                         name: nameIn.value.trim(), 
@@ -216,9 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         timestamp: Date.now() 
                     });
                     msgIn.value = ''; 
-                    showToast('Message sent successfully!');
-                } else {
-                    showToast('Please fill all fields', 'error');
+                    showToast('Sent!');
                 }
             });
         }
