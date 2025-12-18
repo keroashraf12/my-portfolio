@@ -26,7 +26,7 @@
     --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body {
     font-family: var(--font-main);
     background: var(--bg-main);
@@ -34,6 +34,7 @@ body {
     line-height: 1.5;
     transition: background 0.3s, color 0.3s;
     padding-bottom: 60px;
+    overflow-x: hidden;
 }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
@@ -73,7 +74,7 @@ body {
 .hero p { color: var(--text-muted); }
 
 .stats-grid { 
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 24px; margin-bottom: 40px; 
 }
 .stat-card {
@@ -93,7 +94,6 @@ body {
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
 .grid-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
-@media (max-width: 900px) { .grid-layout { grid-template-columns: 1fr; } }
 
 .card {
     background: var(--bg-card); border-radius: var(--radius);
@@ -119,7 +119,7 @@ body {
 input, select, textarea {
     width: 100%; padding: 12px; border: 1px solid var(--border);
     border-radius: 10px; background: var(--bg-main); color: var(--text-main);
-    margin-bottom: 10px; font-family: inherit; outline: none;
+    margin-bottom: 10px; font-family: inherit; outline: none; font-size: 16px;
 }
 input:focus { border-color: var(--primary); }
 .calc-body { padding: 20px; }
@@ -164,3 +164,21 @@ input:focus { border-color: var(--primary); }
 }
 @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.card-body { padding: 15px; }
+
+@media (max-width: 900px) {
+    .grid-layout { grid-template-columns: 1fr; }
+    .col-side { order: 2; }
+    .col-main { order: 1; }
+}
+
+@media (max-width: 600px) {
+    .container { padding: 0 16px; }
+    .nav-content { flex-direction: column; gap: 10px; }
+    .nav-actions { width: 100%; justify-content: space-between; }
+    .hero h2 { font-size: 1.8rem; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat-card { padding: 16px; flex-direction: column; text-align: center; }
+    .toggles-grid { grid-template-columns: 1fr; }
+    .input-row { flex-direction: column; gap: 0; }
+}
