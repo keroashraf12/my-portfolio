@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,18 +8,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-    <div id="toast-container"></div>
+<body id="app-body"> <div id="toast-container"></div>
 
     <nav class="navbar">
         <div class="container nav-content">
             <div class="brand">
-                <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
+                <img src="done.png" alt="Profile" class="profile-pic">
                 <h1 class="logo-text">Kerullus<span class="highlight">.Dev</span></h1>
             </div>
+            
             <div class="nav-actions">
-                <div class="live-clock" id="live-clock">00:00:00</div>
+                <div class="live-clock" id="live-clock">--:--</div>
                 <button id="theme-toggle" class="icon-btn" aria-label="Switch Theme">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -31,9 +30,9 @@
         <header class="hero">
             <div class="hero-text">
                 <span class="badge">System Online</span>
-                <h2 id="greeting-text">Welcome back, Engineer</h2>
-                <h2>I am <span id="typed-text"></span></h2>
-                <p>Here is your daily overview and tools.</p>
+                <h2 id="greeting-text">Welcome back</h2>
+                <h2 class="sub-hero">I am <span id="typed-text"></span></h2>
+                <p>Your daily dashboard is ready.</p>
             </div>
         </header>
 
@@ -54,20 +53,20 @@
                     <div class="calc-body">
                         <div class="input-row">
                             <div class="group">
-                                <label>Unit Price</label>
+                                <label>Price</label>
                                 <input type="number" id="calc-price" placeholder="0.00">
                             </div>
                             <div class="group">
-                                <label>Quantity</label>
+                                <label>Qty</label>
                                 <input type="number" id="calc-qty" placeholder="1">
                             </div>
                         </div>
-                        <button id="do-calc" class="btn btn-primary">Calculate & Save</button>
+                        <button id="do-calc" class="btn btn-primary">Calculate</button>
                         
                         <div class="calc-history">
-                            <h4>Recent History</h4>
+                            <h4>History</h4>
                             <ul id="history-list">
-                                <li class="empty-hint">No calculations yet.</li>
+                                <li class="empty-hint">No data yet.</li>
                             </ul>
                         </div>
                     </div>
@@ -75,39 +74,33 @@
 
                 <section class="card tool-card">
                     <div class="card-header">
-                        <div class="icon-box purple"><i class="fas fa-file-invoice-dollar"></i></div>
-                        <h3>Project Quote</h3>
+                        <div class="icon-box purple"><i class="fas fa-wallet"></i></div>
+                        <h3>Quote Estimator</h3>
                     </div>
                     <div class="estimator-body">
                         <label class="custom-select">
                             <span>Project Type</span>
                             <select id="est-type">
-                                <option value="0">Select Category...</option>
-                                <option value="3000">Landing Page (Start 3k)</option>
-                                <option value="8000">Corporate Website (Start 8k)</option>
-                                <option value="15000">E-Commerce System (Start 15k)</option>
+                                <option value="0">Select...</option>
+                                <option value="3000">Landing Page (3k)</option>
+                                <option value="8000">Corporate Site (8k)</option>
+                                <option value="15000">E-Commerce (15k)</option>
                             </select>
                         </label>
                         
                         <div class="toggles-grid">
                             <label class="toggle-card">
                                 <input type="checkbox" id="est-db" value="4000">
-                                <span class="toggle-content">
-                                    <span class="t-title">Database</span>
-                                    <span class="t-price">+4,000</span>
-                                </span>
+                                <span>Database (+4k)</span>
                             </label>
                             <label class="toggle-card">
                                 <input type="checkbox" id="est-api" value="2500">
-                                <span class="toggle-content">
-                                    <span class="t-title">API Integration</span>
-                                    <span class="t-price">+2,500</span>
-                                </span>
+                                <span>API (+2.5k)</span>
                             </label>
                         </div>
 
                         <div class="final-quote">
-                            <span>Estimated Total</span>
+                            <span>Total Estimate</span>
                             <h2 id="est-total">0 <small>EGP</small></h2>
                         </div>
                     </div>
@@ -118,17 +111,18 @@
                 <section class="card">
                     <div class="card-header">
                         <div class="icon-box blue"><i class="fas fa-chart-line"></i></div>
-                        <h3>Coding Activity</h3>
+                        <h3>Activity</h3>
                     </div>
                     <div class="card-body">
-                        <div style="position: relative; height: 200px; width: 100%;">
+                        <div class="chart-container">
                             <canvas id="myChart"></canvas>
                         </div>
                     </div>
                 </section>
+
                 <section class="card guestbook-card">
                     <div class="card-header">
-                        <div class="icon-box green"><i class="fas fa-comment-dots"></i></div>
+                        <div class="icon-box green"><i class="fas fa-comments"></i></div>
                         <h3>Guestbook</h3>
                     </div>
                     
@@ -138,8 +132,8 @@
 
                     <div class="message-input">
                         <input type="text" id="gb-name" placeholder="Your Name">
-                        <textarea id="gb-msg" placeholder="Leave a note..."></textarea>
-                        <button id="gb-send" class="btn btn-secondary">Post Message</button>
+                        <textarea id="gb-msg" rows="1" placeholder="Type message..."></textarea>
+                        <button id="gb-send" class="btn btn-secondary">Send</button>
                     </div>
                 </section>
             </aside>
