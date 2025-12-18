@@ -94,13 +94,10 @@ body {
     gap: 15px;
 }
 
-.icon-btn {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: #fff;
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
+.live-clock {
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9rem;
 }
 
 /* ========================
@@ -112,7 +109,7 @@ body {
     text-align: left;
 }
 
-/* ستايل زر الأونلاين الجديد */
+/* ستايل زر الأونلاين الجديد - الأخضر المنور */
 .badge {
     display: inline-flex;
     align-items: center;
