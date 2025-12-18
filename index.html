@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kerullus Workspace</title>
+    <title>Kerullus Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="app-body"> <div id="toast-container"></div>
+<body> <div id="toast-container"></div>
 
     <nav class="navbar">
         <div class="container nav-content">
@@ -17,22 +17,20 @@
                 <h1 class="logo-text">Kerullus<span class="highlight">.Dev</span></h1>
             </div>
             
-            <div class="nav-actions">
-                <div class="live-clock" id="live-clock">--:--</div>
-                <button id="theme-toggle" class="icon-btn" aria-label="Switch Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
+<div class="nav-actions">
+    <div class="live-clock" id="live-clock">--:--</div>
+</div>
         </div>
     </nav>
 
     <main class="container">
         <header class="hero">
             <div class="hero-text">
-                <span class="badge">System Online</span>
+                <div class="badge">System Online</div>
+                
                 <h2 id="greeting-text">Welcome back</h2>
                 <h2 class="sub-hero">I am <span id="typed-text"></span></h2>
-                <p>Your daily dashboard is ready.</p>
+                <p>Dashboard & Tools Interface</p>
             </div>
         </header>
 
@@ -53,20 +51,20 @@
                     <div class="calc-body">
                         <div class="input-row">
                             <div class="group">
-                                <label>Price</label>
+                                <label>Unit Price</label>
                                 <input type="number" id="calc-price" placeholder="0.00">
                             </div>
                             <div class="group">
-                                <label>Qty</label>
+                                <label>Quantity</label>
                                 <input type="number" id="calc-qty" placeholder="1">
                             </div>
                         </div>
                         <button id="do-calc" class="btn btn-primary">Calculate</button>
                         
                         <div class="calc-history">
-                            <h4>History</h4>
+                            <h4>History Log</h4>
                             <ul id="history-list">
-                                <li class="empty-hint">No data yet.</li>
+                                <li class="empty-hint">No calculations yet.</li>
                             </ul>
                         </div>
                     </div>
@@ -75,13 +73,13 @@
                 <section class="card tool-card">
                     <div class="card-header">
                         <div class="icon-box purple"><i class="fas fa-wallet"></i></div>
-                        <h3>Quote Estimator</h3>
+                        <h3>Project Estimator</h3>
                     </div>
                     <div class="estimator-body">
                         <label class="custom-select">
                             <span>Project Type</span>
                             <select id="est-type">
-                                <option value="0">Select...</option>
+                                <option value="0">Select Type...</option>
                                 <option value="3000">Landing Page (3k)</option>
                                 <option value="8000">Corporate Site (8k)</option>
                                 <option value="15000">E-Commerce (15k)</option>
@@ -100,7 +98,7 @@
                         </div>
 
                         <div class="final-quote">
-                            <span>Total Estimate</span>
+                            <span>Estimated Price</span>
                             <h2 id="est-total">0 <small>EGP</small></h2>
                         </div>
                     </div>
@@ -132,8 +130,8 @@
 
                     <div class="message-input">
                         <input type="text" id="gb-name" placeholder="Your Name">
-                        <textarea id="gb-msg" rows="1" placeholder="Type message..."></textarea>
-                        <button id="gb-send" class="btn btn-secondary">Send</button>
+                        <textarea id="gb-msg" rows="1" placeholder="Type a message..."></textarea>
+                        <button id="gb-send" class="btn btn-secondary">Send Message</button>
                     </div>
                 </section>
             </aside>
