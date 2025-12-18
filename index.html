@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerullus Ashraf | Engineer & Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="status-indicator">
+            <span class="led green" id="status-led"></span>
+            <span class="status-text" id="status-text">Open for Work</span>
+        </div>
+        
+        <div class="switch-container">
+            <input type="checkbox" id="power-switch">
+            <label for="power-switch" class="switch-label">
+                <div class="screw"></div>
+                <div class="switch-handle"></div>
+                <div class="screw"></div>
+            </label>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <h1 id="smart-greeting">Welcome</h1>
+        <h2>I am Kerullus Ashraf</h2>
+        <p class="typewriter">Computer Engineer | Java Developer | Embedded Systems Enthusiast</p>
+    </header>
+
+    <section id="github-stats">
+        <h3>Live GitHub Stats</h3>
+        <div id="stats-container">Loading data...</div>
+    </section>
+
+    <section id="calculator-section">
+        <h3>🚀 Project Cost Estimator</h3>
+        <div class="calculator-container">
+            
+            <div class="calc-group">
+                <label>Project Type:</label>
+                <select id="project-type">
+                    <option value="3000">Simple Website (3,000 EGP)</option>
+                    <option value="8000">Desktop Application (8,000 EGP)</option>
+                    <option value="12000">Full System (Web + Mobile)</option>
+                </select>
+            </div>
+
+            <div class="calc-group">
+                <label>Add-ons:</label>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="add-database" value="2000">
+                    <label for="add-database">Database Integration (+2,000 EGP)</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="add-design" value="1500">
+                    <label for="add-design">Premium UI/UX Design (+1,500 EGP)</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="add-urgent" value="1.5"> <label for="add-urgent" style="color: #e74c3c;">⚠️ Urgent Delivery (x1.5 Price)</label>
+                </div>
+            </div>
+
+            <div class="total-price-display">
+                <span>Estimated Cost:</span>
+                <span id="final-price">3000</span> EGP
+            </div>
+            
+            <p class="note">* This is a rough estimate. Contact me for details.</p>
+        </div>
+    </section>
+
+    <section id="projects-demo">
+        <h3>💻 Project Demo: Al-Naeem Tex</h3>
+        <p class="demo-intro">Try the actual logic used in the Desktop Application:</p>
+        
+        <div class="window-frame">
+            <div class="window-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="window-title">Al-Naeem Tex v1.0 (Java Logic)</span>
+            </div>
+            <div class="window-body">
+                <div class="input-row">
+                    <label>Item Price (EGP):</label>
+                    <input type="number" id="tex-price" placeholder="e.g. 150">
+                </div>
+                <div class="input-row">
+                    <label>Quantity:</label>
+                    <input type="number" id="tex-qty" placeholder="e.g. 3">
+                </div>
+                <div class="input-row">
+                    <label>Discount (%):</label>
+                    <input type="number" id="tex-discount" value="0">
+                </div>
+                
+                <button onclick="calculateTex()" class="run-btn">Run Calculation</button>
+                
+                <div class="output-console" id="tex-output">
+                    &gt; System Ready...<br>
+                    &gt; Waiting for input...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guestbook-section">
+        <h3>📖 Digital Guestbook</h3>
+        <p>Leave a mark! Your message will appear to everyone instantly.</p>
+        
+        <div class="guestbook-container">
+            <div id="messages-list">
+                <div class="msg-loading">Loading messages...</div>
+            </div>
+
+            <div class="guest-form">
+                <input type="text" id="guest-name" placeholder="Your Name" maxlength="20">
+                <input type="text" id="guest-msg" placeholder="Write something nice..." maxlength="100">
+                <button onclick="sendMessage()" id="send-btn">
+                    <i class="fas fa-paper-plane"></i> Send
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <audio id="click-sound" src="click.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

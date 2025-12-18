@@ -1,0 +1,355 @@
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --switch-off: #ccc;
+    --switch-on: #2196F3;
+}
+
+/* الوضع الليلي */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #00ff00; /* لون أخضر زي الترمنال */
+    --switch-off: #555;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Courier New', monospace; /* خط هندسي */
+    margin: 0;
+    padding: 20px;
+}
+
+/* تصميم مفتاح الكهرباء */
+.switch-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.switch-label {
+    width: 60px;
+    height: 100px;
+    background: #e0e0e0;
+    border: 2px solid #999;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.switch-handle {
+    width: 20px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #999;
+    transition: transform 0.2s;
+    transform: translateY(-10px) rotateX(20deg); /* وضع القفل */
+    box-shadow: 0 4px 0 #bbb;
+}
+
+input[type="checkbox"] { display: none; }
+
+/* لما نشغل المفتاح */
+input:checked + .switch-label .switch-handle {
+    transform: translateY(10px) rotateX(-20deg); /* وضع الفتح */
+    box-shadow: 0 -4px 0 #bbb;
+    background: #4caf50;
+}
+
+/* لمبة الحالة */
+.led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    background: gray;
+    box-shadow: 0 0 5px gray;
+}
+.led.green { background: #00ff00; box-shadow: 0 0 10px #00ff00; }
+.led.red { background: #ff0000; box-shadow: 0 0 10px #ff0000; }
+
+/* تنسيق قسم إحصائيات جيت هب */
+#stats-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 120px;
+    transition: transform 0.3s ease;
+}
+
+/* حركة الـ Tilt لما الماوس ييجي عليها */
+.stat-card:hover {
+    transform: translateY(-5px) rotate(2deg);
+    border-bottom: 3px solid #2196F3;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+/* تعديل للألوان في الوضع الليلي */
+body.dark-mode .stat-card {
+    background: #333;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0,255,0,0.2);
+}
+
+/* تنسيق الحاسبة (تشطيب مودرن) */
+#calculator-section {
+    margin: 40px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.calculator-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+/* في الوضع الليلي */
+body.dark-mode .calculator-container {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+.calc-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    margin-top: 5px;
+}
+
+.checkbox-wrapper {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* شاشة السعر */
+.total-price-display {
+    background: #2196F3;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+body.dark-mode .total-price-display {
+    background: #006400; /* أخضر غامق في الوضع الليلي */
+}
+
+/* حافظ على الـ final-price مميز */
+#final-price { font-weight: 900; }
+
+.note { font-size: 0.85rem; color: #666; text-align: center; margin-top: 8px; }
+
+/* تصميم نافذة البرنامج */
+#projects-demo {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 600px;
+}
+
+.window-frame {
+    background: #2d2d2d;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    overflow: hidden;
+    text-align: left;
+    border: 1px solid #444;
+    margin-top: 20px;
+}
+
+.window-header {
+    background: #1e1e1e;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #333;
+}
+
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.window-title {
+    color: #999;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    font-family: sans-serif;
+}
+
+.window-body {
+    padding: 20px;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+}
+
+.input-row {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-body input {
+    background: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 5px;
+    width: 100px;
+    border-radius: 4px;
+}
+
+.run-btn {
+    width: 100%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.run-btn:hover { background: #1976D2; }
+
+.output-console {
+    background: #000;
+    color: #0f0;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-height: 60px;
+    border-left: 3px solid #0f0;
+}
+
+/* Guestbook styles */
+#guestbook-section {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.guestbook-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+body.dark-mode .guestbook-container {
+    background: #2d2d2d;
+    border-color: #444;
+}
+
+#messages-list {
+    height: 300px;
+    overflow-y: auto; /* سكرول للرسايل بس */
+    padding: 20px;
+    background: #f9f9f9;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body.dark-mode #messages-list { background: #222; }
+
+/* تصميم الرسالة الواحدة */
+.message-bubble {
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 15px 15px 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    animation: popIn 0.3s ease;
+    border-left: 4px solid #2196F3;
+}
+
+body.dark-mode .message-bubble {
+    background: #333;
+    color: #eee;
+}
+
+.msg-header {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.msg-name { font-weight: bold; color: #2196F3; }
+
+.guest-form {
+    padding: 15px;
+    background: #eee;
+    display: flex;
+    gap: 10px;
+}
+
+body.dark-mode .guest-form { background: #1a1a1a; }
+
+.guest-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+#guest-name { width: 30%; }
+#guest-msg { width: 50%; flex-grow: 1; }
+
+#send-btn {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#send-btn:hover { background: #1976D2; }
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
