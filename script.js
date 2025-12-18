@@ -56,8 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = "keroashraf12"; 
         
         try {
-            await new Promise(r => setTimeout(r, 1500)); 
-            
             const res = await fetch(`https://api.github.com/users/${username}`);
             if(!res.ok) throw new Error();
             const data = await res.json();
@@ -77,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         } catch {
-            container.innerHTML = `<p style="color:red; padding:20px;">API Error (Check Internet)</p>`;
+            container.innerHTML = `<p style="color:red; padding:10px;">Offline</p>`;
         }
     }
     loadStats();
@@ -93,9 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (price && qty) {
                 const total = price * qty;
-                                const li = document.createElement('li');
+                const li = document.createElement('li');
                 li.innerHTML = `<span>${qty} x ${price}</span> <strong>${total.toLocaleString()} EGP</strong>`;
-                                if(historyList.querySelector('.empty-hint')) historyList.innerHTML = '';
+                if(historyList.querySelector('.empty-hint')) historyList.innerHTML = '';
                 
                 historyList.prepend(li);
                 showToast(`Result: ${total.toLocaleString()} EGP`);
@@ -163,54 +161,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
 
-    try {
-        const chartEl = document.getElementById('myChart');
-        if (chartEl && typeof Chart !== 'undefined') {
-            new Chart(chartEl, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{
-                        label: 'Contributions',
-                        data: [12, 19, 3, 5, 2, 3],
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59,130,246,0.08)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { beginAtZero: true }
+        try {
+            const chartEl = document.getElementById('myChart');
+            if (chartEl && typeof Chart !== 'undefined') {
+                new Chart(chartEl, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'Contributions',
+                            data: [12, 19, 3, 5, 2, 3],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59,130,246,0.08)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
                     }
-                }
-            });  
-            chartEl.style.minHeight = '160px';
-        } else if (!chartEl) {
-            console.warn('Chart canvas (#myChart) not found in DOM.');
-        } else {
-            console.warn('Chart.js is not loaded.');
+                });  
+            }
+        } catch (e) {
+            console.error('Failed to initialize chart:', e);
         }
-    } catch (e) {
-        console.error('Failed to initialize chart:', e);
-    }
 
-    try {
-        if (typeof Typed !== 'undefined') {
-            var typed = new Typed('#typed-text', {
-                strings: ['Software Engineer.', 'Web Developer.', 'Problem Solver.'],
-                typeSpeed: 50,
-                backSpeed: 30,
-                loop: true
-            });
-        } else {
-            console.warn('Typed.js not loaded.');
+        try {
+            if (typeof Typed !== 'undefined') {
+                var typed = new Typed('#typed-text', {
+                    strings: ['Software Engineer.', 'Web Developer.', 'Problem Solver.'],
+                    typeSpeed: 50,
+                    backSpeed: 30,
+                    loop: true
+                });
+            }
+        } catch (e) {
+            console.error('Typed.js init error:', e);
         }
-    } catch (e) {
-        console.error('Typed.js init error:', e);
-    }
+
         const sendBtn = document.getElementById('gb-send');
         if(sendBtn) {
             sendBtn.addEventListener('click', () => {
