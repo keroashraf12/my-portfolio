@@ -5,10 +5,9 @@
     --switch-on: #2196F3;
 }
 
-/* الوضع الليلي */
 body.dark-mode {
     --bg-color: #1a1a1a;
-    --text-color: #00ff00; /* لون أخضر زي الترمنال */
+    --text-color: #00ff00; 
     --switch-off: #555;
 }
 
@@ -16,12 +15,11 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background 0.3s, color 0.3s;
-    font-family: 'Courier New', monospace; /* خط هندسي */
+    font-family: 'Courier New', monospace; 
     margin: 0;
     padding: 20px;
 }
 
-/* تصميم مفتاح الكهرباء */
 .switch-container {
     position: fixed;
     top: 20px;
@@ -49,20 +47,18 @@ body {
     background: #fff;
     border: 1px solid #999;
     transition: transform 0.2s;
-    transform: translateY(-10px) rotateX(20deg); /* وضع القفل */
+    transform: translateY(-10px) rotateX(20deg);
     box-shadow: 0 4px 0 #bbb;
 }
 
 input[type="checkbox"] { display: none; }
 
-/* لما نشغل المفتاح */
 input:checked + .switch-label .switch-handle {
-    transform: translateY(10px) rotateX(-20deg); /* وضع الفتح */
+    transform: translateY(10px) rotateX(-20deg); 
     box-shadow: 0 -4px 0 #bbb;
     background: #4caf50;
 }
 
-/* لمبة الحالة */
 .led {
     width: 10px;
     height: 10px;
@@ -74,7 +70,6 @@ input:checked + .switch-label .switch-handle {
 .led.green { background: #00ff00; box-shadow: 0 0 10px #00ff00; }
 .led.red { background: #ff0000; box-shadow: 0 0 10px #ff0000; }
 
-/* تنسيق قسم إحصائيات جيت هب */
 #stats-container {
     display: flex;
     gap: 20px;
@@ -93,7 +88,7 @@ input:checked + .switch-label .switch-handle {
     transition: transform 0.3s ease;
 }
 
-/* حركة الـ Tilt لما الماوس ييجي عليها */
+
 .stat-card:hover {
     transform: translateY(-5px) rotate(2deg);
     border-bottom: 3px solid #2196F3;
@@ -106,14 +101,12 @@ input:checked + .switch-label .switch-handle {
     color: #2196F3;
 }
 
-/* تعديل للألوان في الوضع الليلي */
 body.dark-mode .stat-card {
     background: #333;
     color: #fff;
     box-shadow: 0 4px 6px rgba(0,255,0,0.2);
 }
 
-/* تنسيق الحاسبة (تشطيب مودرن) */
 #calculator-section {
     margin: 40px auto;
     max-width: 600px;
@@ -128,7 +121,6 @@ body.dark-mode .stat-card {
     border: 1px solid #ddd;
 }
 
-/* في الوضع الليلي */
 body.dark-mode .calculator-container {
     background: #2a2a2a;
     border-color: #444;
@@ -155,7 +147,6 @@ select {
     gap: 10px;
 }
 
-/* شاشة السعر */
 .total-price-display {
     background: #2196F3;
     color: white;
@@ -168,15 +159,13 @@ select {
 }
 
 body.dark-mode .total-price-display {
-    background: #006400; /* أخضر غامق في الوضع الليلي */
+    background: #006400; 
 }
 
-/* حافظ على الـ final-price مميز */
 #final-price { font-weight: 900; }
 
 .note { font-size: 0.85rem; color: #666; text-align: center; margin-top: 8px; }
 
-/* تصميم نافذة البرنامج */
 #projects-demo {
     text-align: center;
     margin: 50px auto;
@@ -261,7 +250,6 @@ body.dark-mode .total-price-display {
     border-left: 3px solid #0f0;
 }
 
-/* Guestbook styles */
 #guestbook-section {
     max-width: 600px;
     margin: 50px auto;
@@ -283,7 +271,7 @@ body.dark-mode .guestbook-container {
 
 #messages-list {
     height: 300px;
-    overflow-y: auto; /* سكرول للرسايل بس */
+    overflow-y: auto; 
     padding: 20px;
     background: #f9f9f9;
     text-align: left;
@@ -294,7 +282,6 @@ body.dark-mode .guestbook-container {
 
 body.dark-mode #messages-list { background: #222; }
 
-/* تصميم الرسالة الواحدة */
 .message-bubble {
     background: #fff;
     padding: 10px 15px;
@@ -352,4 +339,5 @@ body.dark-mode .guest-form { background: #1a1a1a; }
 @keyframes popIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+
 }
