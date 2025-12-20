@@ -2,146 +2,265 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kerullus Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerullus Ashraf | Systems Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="toast-container"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-blob b1"></div>
+    <div class="bg-blob b2"></div>
 
-    <nav class="navbar">
+    <nav class="navbar glass">
         <div class="container nav-content">
             <div class="brand">
-                <img src="done.png" alt="Profile" class="profile-pic">
+                <div class="img-wrapper">
+                    <img src="done.png" alt="Kerullus" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=Kerullus+Ashraf&background=3b82f6&color=fff'">
+                    <span class="online-dot pulse"></span>
+                </div>
                 <h1 class="logo-text">Kerullus<span class="highlight">.Dev</span></h1>
             </div>
             
+            <div class="nav-links desktop-only">
+                <a href="#about">About</a>
+                <a href="#stats">Stats</a>
+                <a href="#timeline">Journey</a>
+                <a href="#projects">Projects</a>
+            </div>
+
             <div class="nav-actions">
-                <div class="live-clock" id="live-clock">--:--</div>
-                </div>
+                <a href="Kerullus_Ashraf_CV..pdf" download class="btn-cv ripple">
+                    <span>Download CV</span> <i class="fas fa-download"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
     <main class="container">
-        <header class="hero">
-            <div class="hero-text">
-                <div class="badge">System Online</div>
+        
+        <header class="hero" id="about">
+            <div class="hero-content" data-aos="fade-up">
+                <div class="badge-pill">
+                    <span class="status-dot"></span> Available for Hire
+                </div>
+                <h1 class="hero-title">Engineering The Future With <br> <span class="gradient-text" id="typed-text"></span></h1>
+                <p class="hero-sub">
+                    Systems Engineer at <strong>UFE</strong>. I fuse <strong>Embedded Systems</strong> with <strong>Modern Software</strong> to build intelligent, scalable solutions.
+                </p>
                 
-                <h2 id="greeting-text">Welcome back</h2>
-                <h2 class="sub-hero">I am <span id="typed-text"></span></h2>
-                <p>Dashboard & Tools Interface</p>
+                <div class="social-links">
+                    <a href="https://github.com/keroashraf12" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/kerullusashraff/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:contact@kerullus.dev" class="social-btn"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
         </header>
 
-        <section class="stats-grid" id="stats-container">
-            <div class="stat-card skeleton"></div>
-            <div class="stat-card skeleton"></div>
-            <div class="stat-card skeleton"></div>
+        <section class="stats-bar glass-card" id="stats" data-aos="zoom-in">
+            <div class="stat-item">
+                <h2 class="counter" data-target="200">0</h2>
+                <p>Training Hours (NTI & ITI)</p>
+            </div>
+            <div class="stat-item">
+                <h2 class="counter" data-target="15">0</h2>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-item">
+                <h2 class="counter" data-target="4">0</h2>
+                <p>Years of Coding</p>
+            </div>
+            <div class="stat-item">
+                <h2>Top</h2>
+                <p>Grade Performance</p>
+            </div>
         </section>
 
-        <div class="grid-layout">
-            <div class="col-main">
+        <section class="section-padding" id="timeline">
+            <h2 class="section-title" data-aos="fade-up">Career Journey</h2>
+            <div class="timeline">
                 
-                <section class="card tool-card">
-                    <div class="card-header">
-                        <div class="icon-box blue"><i class="fas fa-calculator"></i></div>
-                        <h3>Smart Calculator</h3>
-                    </div>
-                    <div class="calc-body">
-                        <div class="input-row">
-                            <div class="group">
-                                <label>Unit Price</label>
-                                <input type="number" id="calc-price" placeholder="0.00">
-                            </div>
-                            <div class="group">
-                                <label>Quantity</label>
-                                <input type="number" id="calc-qty" placeholder="1">
-                            </div>
-                        </div>
-                        <button id="do-calc" class="btn btn-primary">Calculate</button>
-                        
-                        <div class="calc-history">
-                            <h4>History Log</h4>
-                            <ul id="history-list">
-                                <li class="empty-hint">No calculations yet.</li>
-                            </ul>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="content glass-card hover-glow">
+                        <span class="date">2021 - 2023</span>
+                        <h3>Full-Stack Web Foundation</h3>
+                        <p>Mastered building dynamic, responsive web applications using the LAMP stack.</p>
+                        <div class="mini-tags">
+                            <span>PHP</span><span>MySQL</span><span>Bootstrap</span>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <section class="card tool-card">
-                    <div class="card-header">
-                        <div class="icon-box purple"><i class="fas fa-wallet"></i></div>
-                        <h3>Project Estimator</h3>
-                    </div>
-                    <div class="estimator-body">
-                        <label class="custom-select">
-                            <span>Project Type</span>
-                            <select id="est-type">
-                                <option value="0">Select Type...</option>
-                                <option value="3000">Landing Page (3k)</option>
-                                <option value="8000">Corporate Site (8k)</option>
-                                <option value="15000">E-Commerce (15k)</option>
-                            </select>
-                        </label>
-                        
-                        <div class="toggles-grid">
-                            <label class="toggle-card">
-                                <input type="checkbox" id="est-db" value="4000">
-                                <span>Database (+4k)</span>
-                            </label>
-                            <label class="toggle-card">
-                                <input type="checkbox" id="est-api" value="2500">
-                                <span>API (+2.5k)</span>
-                            </label>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="content glass-card hover-glow">
+                        <span class="date">2024 - Present</span>
+                        <h3>Embedded Systems & IoT</h3>
+                        <p>Specialized in Hardware-Software integration. Built Smart Class systems with AI Voice Control.</p>
+                        <div class="mini-tags">
+                            <span>ESP32</span><span>C++</span><span>IoT</span>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="final-quote">
-                            <span>Estimated Price</span>
-                            <h2 id="est-total">0 <small>EGP</small></h2>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="content glass-card hover-glow">
+                        <span class="date">2025</span>
+                        <h3>Advanced Software Engineering</h3>
+                        <p>Developing enterprise-level Desktop Systems (Hospital & Crime Mgmt) using Java OOP.</p>
+                        <div class="mini-tags">
+                            <span>Java</span><span>Swing</span><span>Design Patterns</span>
                         </div>
                     </div>
-                </section>
+                </div>
+
             </div>
+        </section>
 
-            <aside class="col-side">
-                <section class="card">
+        <section class="section-padding" id="projects">
+            <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="card-header">
-                        <div class="icon-box blue"><i class="fas fa-chart-line"></i></div>
-                        <h3>Activity</h3>
+                        <div class="icon-square green"><i class="fas fa-microchip"></i></div>
+                        <div>
+                            <h3>Smart Voice Class</h3>
+                            <p class="card-sub">IoT & Automation</p>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="myChart"></canvas>
+                        <p>Automated classroom using ESP32 & 4-Channel Relay. Features AI voice control & mobile app.</p>
+                        <div class="tech-stack">
+                            <span>ESP32</span><span>C++</span><span>Flutter</span>
+                        </div>
+                        <button class="btn-outline ripple" onclick="openModal('smart-class')">View Details</button>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-header">
+                        <div class="icon-square purple"><i class="fas fa-church"></i></div>
+                        <div>
+                            <h3>Church Platform</h3>
+                            <p class="card-sub">Management System</p>
                         </div>
                     </div>
-                </section>
+                    <div class="card-body">
+                        <p>Full tracking system for attendance, servants, and statistical reporting with Dashboard.</p>
+                        <div class="tech-stack">
+                            <span>PHP</span><span>MySQL</span><span>Analytics</span>
+                        </div>
+                        <button class="btn-outline ripple" onclick="openModal('church-app')">View Details</button>
+                    </div>
+                </div>
 
-                <section class="card guestbook-card">
+                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-header">
-                        <div class="icon-box green"><i class="fas fa-comments"></i></div>
-                        <h3>Guestbook</h3>
+                        <div class="icon-square blue"><i class="fas fa-hospital-user"></i></div>
+                        <div>
+                            <h3>Hospital ERP</h3>
+                            <p class="card-sub">Desktop Application</p>
+                        </div>
                     </div>
-                    
-                    <div id="messages-feed" class="messages-feed">
-                        <div class="loading-spinner">Loading...</div>
+                    <div class="card-body">
+                        <p>Robust desktop software for patient appointments & billing using strict OOP principles.</p>
+                        <div class="tech-stack">
+                            <span>Java</span><span>Swing</span><span>SQL</span>
+                        </div>
+                        <button class="btn-outline ripple" onclick="openModal('hospital')">View Details</button>
                     </div>
+                </div>
 
-                    <div class="message-input">
-                        <input type="text" id="gb-name" placeholder="Your Name">
-                        <textarea id="gb-msg" rows="1" placeholder="Type a message..."></textarea>
-                        <button id="gb-send" class="btn btn-secondary">Send Message</button>
+            </div>
+        </section>
+
+        <section class="section-padding" id="certs">
+            <div class="split-layout">
+                <div class="col-left" data-aos="fade-right">
+                    <h2 class="section-title left-align">Certifications</h2>
+                    <div class="cert-list">
+                        <div class="cert-item glass-card">
+                            <div class="cert-icon-box"><i class="fas fa-certificate"></i></div>
+                            <div>
+                                <h4>NTI Training (160 Hours)</h4>
+                                <p>Embedded Systems & IoT Specialization</p>
+                            </div>
+                        </div>
+                        <div class="cert-item glass-card">
+                            <div class="cert-icon-box"><i class="fas fa-code"></i></div>
+                            <div>
+                                <h4>ITI Web Development</h4>
+                                <p>Building Web Apps with PHP & MySQL</p>
+                            </div>
+                        </div>
+                        <div class="cert-item glass-card">
+                            <div class="cert-icon-box"><i class="fas fa-brain"></i></div>
+                            <div>
+                                <h4>AI For Everyone (ITI)</h4>
+                                <p>Machine Learning Fundamentals</p>
+                            </div>
+                        </div>
                     </div>
-                </section>
-            </aside>
-        </div>
+                </div>
+
+                <div class="col-right" data-aos="fade-left">
+                    <h2 class="section-title left-align">Engineering Dashboard</h2>
+                    <div class="dashboard-grid">
+                        <div class="card glass-card chart-card">
+                            <div class="card-header small-header">
+                                <h3>Tech Proficiency</h3>
+                            </div>
+                            <div class="chart-box">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="card glass-card">
+                            <div class="card-header small-header">
+                                <h3>Dev Tools</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group-row">
+                                    <input type="number" id="calc-price" placeholder="Price">
+                                    <input type="number" id="calc-qty" placeholder="Qty">
+                                </div>
+                                <button id="do-calc" class="btn-primary-sm">Calculate</button>
+                                <div id="calc-result" class="calc-res">0.00 EGP</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2025 Kerullus Ashraf. All rights reserved.</p>
+        </footer>
+
     </main>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <div id="project-modal" class="modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Project Title</h2>
+            <div class="modal-tags" id="modal-tags"></div>
+            <div class="modal-body">
+                <p id="modal-desc">Description goes here...</p>
+                <div class="modal-features">
+                    <h4>Key Features:</h4>
+                    <ul id="modal-features-list"></ul>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="#" class="btn-primary-sm">Live Demo</a>
+                <a href="https://github.com/keroashraf12" class="btn-outline">GitHub Repo</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script src="script.js"></script>
