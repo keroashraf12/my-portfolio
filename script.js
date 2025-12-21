@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Initialize Animations (AOS)
     AOS.init({
         duration: 800,
         once: true,
         offset: 100
     });
 
-    // 2. Stats Counter Animation (عداد الأرقام)
     const counters = document.querySelectorAll('.counter');
     counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
@@ -22,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, stepTime);
     });
 
-    // 3. Typed.js
     if (typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
             strings: ['Embedded Systems.', 'AI Integration.', 'Software Solutions.'],
@@ -33,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Project Modal Logic
     const modal = document.getElementById('project-modal');
     const closeBtn = document.querySelector('.close-modal');
     
@@ -71,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.onclick = () => modal.style.display = 'none';
     window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; }
 
-    // 5. Chart.js (Skills)
     const ctx = document.getElementById('myChart');
     if(ctx) {
         new Chart(ctx, {
@@ -91,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Calculator
     const calcBtn = document.getElementById('do-calc');
     if(calcBtn) {
         calcBtn.addEventListener('click', () => {
@@ -105,4 +99,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
