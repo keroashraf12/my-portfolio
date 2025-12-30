@@ -4,265 +4,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kerullus Ashraf | Systems Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-    <div class="bg-blob b1"></div>
-    <div class="bg-blob b2"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
 
-    <nav class="navbar glass">
+    <nav class="navbar">
         <div class="container nav-content">
-            <div class="brand">
-                <div class="img-wrapper">
-                    <img src="done.png" alt="Kerullus" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=Kerullus+Ashraf&background=3b82f6&color=fff'">
-                    <span class="online-dot pulse"></span>
-                </div>
-                <h1 class="logo-text">Kerullus<span class="highlight">.Dev</span></h1>
-            </div>
-            
-            <div class="nav-links desktop-only">
+            <a href="#" class="brand">
+                Kerullus<span class="highlight">.</span>
+            </a>
+            <div class="nav-links">
                 <a href="#about">About</a>
-                <a href="#stats">Stats</a>
-                <a href="#timeline">Journey</a>
-                <a href="#projects">Projects</a>
+                <a href="#stack">Stack</a>
+                <a href="#projects">Work</a>
+                <a href="#contact" class="cta-link">Contact Me</a>
             </div>
-
-            <div class="nav-actions">
-                <a href="Kerullus_Ashraf_CV..pdf" download class="btn-cv ripple">
-                    <span>Download CV</span> <i class="fas fa-download"></i>
-                </a>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
 
-    <main class="container">
-        
-        <header class="hero" id="about">
-            <div class="hero-content" data-aos="fade-up">
-                <div class="badge-pill">
-                    <span class="status-dot"></span> Available for Hire
+    <main>
+        <section class="hero" id="about">
+            <div class="container hero-container">
+                <div class="hero-text" data-aos="fade-up">
+                    <div class="status-badge">
+                        <span class="pulse-dot"></span> Open to Work
+                    </div>
+                    <h1>Building Intelligence into <br> <span class="gradient-text">Hardware & Software.</span></h1>
+                    <p class="subtitle">
+                        I am <strong>Kerullus Ashraf</strong>, a Systems Engineer at UFE. I bridge the gap between low-level <strong>Embedded Systems</strong> and high-level <strong>Enterprise Software</strong>.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn-primary">View Projects <i class="fas fa-arrow-right"></i></a>
+                        <a href="Kerullus_Ashraf_CV.pdf" download class="btn-secondary">Download CV <i class="fas fa-download"></i></a>
+                    </div>
                 </div>
-                <h1 class="hero-title">Engineering The Future With <br> <span class="gradient-text" id="typed-text"></span></h1>
-                <p class="hero-sub">
-                    Systems Engineer at <strong>UFE</strong>. I fuse <strong>Embedded Systems</strong> with <strong>Modern Software</strong> to build intelligent, scalable solutions.
-                </p>
-                
-                <div class="social-links">
-                    <a href="https://github.com/keroashraf12" target="_blank" class="social-btn"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/kerullusashraff/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="kerullusashraf13@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                <div class="hero-bento" data-aos="fade-left">
+                    <div class="bento-card card-1 spotlight">
+                        <h3>4+ Years</h3>
+                        <p>Coding Experience</p>
+                        <i class="fas fa-code bento-icon"></i>
+                    </div>
+                    <div class="bento-card card-2 spotlight">
+                        <h3>15+</h3>
+                        <p>Projects Delivered</p>
+                        <i class="fas fa-layer-group bento-icon"></i>
+                    </div>
+                    <div class="bento-card card-3 spotlight">
+                        <h3>NTI & ITI</h3>
+                        <p>Certified Trainee</p>
+                        <i class="fas fa-certificate bento-icon"></i>
+                    </div>
+                    <div class="bento-card card-4 spotlight">
+                        <h3>Top Tier</h3>
+                        <p>Performance</p>
+                        <i class="fas fa-star bento-icon"></i>
+                    </div>
                 </div>
             </div>
-        </header>
+        </section>
 
-        <section class="stats-bar glass-card" id="stats" data-aos="zoom-in">
-            <div class="stat-item">
-                <h2 class="counter" data-target="200">0</h2>
-                <p>Training Hours (NTI & ITI)</p>
+        <section id="stack" class="tech-marquee-section">
+            <p class="section-label">Technologies I Engineer With</p>
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    <span><i class="fab fa-java"></i> Java</span>
+                    <span><i class="fas fa-microchip"></i> Embedded C</span>
+                    <span><i class="fab fa-python"></i> Python</span>
+                    <span><i class="fas fa-database"></i> MySQL</span>
+                    <span><i class="fab fa-docker"></i> Docker</span>
+                    <span><i class="fas fa-network-wired"></i> IoT</span>
+                    <span><i class="fab fa-linux"></i> Linux</span>
+                    <span><i class="fab fa-git-alt"></i> Git</span>
+                    <span><i class="fab fa-java"></i> Java</span>
+                    <span><i class="fas fa-microchip"></i> Embedded C</span>
+                    <span><i class="fab fa-python"></i> Python</span>
+                    <span><i class="fas fa-database"></i> MySQL</span>
+                    <span><i class="fab fa-docker"></i> Docker</span>
+                    <span><i class="fas fa-network-wired"></i> IoT</span>
+                    <span><i class="fab fa-linux"></i> Linux</span>
+                    <span><i class="fab fa-git-alt"></i> Git</span>
+                </div>
             </div>
-            <div class="stat-item">
-                <h2 class="counter" data-target="15">0</h2>
-                <p>Projects Completed</p>
-            </div>
-            <div class="stat-item">
-                <h2 class="counter" data-target="4">0</h2>
-                <p>Years of Coding</p>
-            </div>
-            <div class="stat-item">
-                <h2>Top</h2>
-                <p>Grade Performance</p>
+        </section>
+
+        <section id="projects" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Selected Works</h2>
+                    <p>A showcase of technical complexity and practical utility.</p>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card spotlight" data-aos="fade-up">
+                        <div class="card-content">
+                            <div class="project-icon icon-iot"><i class="fas fa-house-signal"></i></div>
+                            <h3>Smart Voice Class</h3>
+                            <p>IoT automation system for university classrooms using ESP32. Controls hardware via AI voice commands and mobile app.</p>
+                            <div class="tags">
+                                <span>C++</span><span>ESP32</span><span>Flutter</span><span>AI</span>
+                            </div>
+                            <div class="card-links">
+                                <a href="#" class="link-btn">Details <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card spotlight" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-content">
+                            <div class="project-icon icon-soft"><i class="fas fa-hospital"></i></div>
+                            <h3>Hospital ERP System</h3>
+                            <p>Enterprise desktop software for managing patient records, appointments, billing cycles, and pharmacy using advanced OOP patterns.</p>
+                            <div class="tags">
+                                <span>Java</span><span>Swing</span><span>MySQL</span><span>JDBC</span>
+                            </div>
+                            <div class="card-links">
+                                <a href="#" class="link-btn open-modal" 
+                                   data-title="Hospital Management System (ERP)"
+                                   data-desc="A comprehensive Hospital Management System built using Java and MySQL. It features complete patient record management, doctor administration, and appointment scheduling. The system includes an interactive Dashboard, a Pharmacy POS system, and robust reporting/billing capabilities. It supports role-based access control (Admin/Doctor) with a professional user interface."
+                                   data-github="https://github.com/keroashraf12"
+                                   data-image-main="images/dashboard.png" 
+                                   data-images="images/login.png,images/dashboard.png,images/dashboard_dr.png,images/patient_list.png,images/doctor_list.png,images/new_doctor.png,images/appointment.png,images/pos.png,images/pos_pharmacy.png,images/rx_pdf.png,images/report.png,images/rx.png,images/waiting.png,images/setting.png,images/splash.png"
+                                   data-tags="Java,Java Swing,MySQL,JDBC,Reports,OOP">
+                                   Details <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card spotlight" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-content">
+                            <div class="project-icon icon-web"><i class="fas fa-church"></i></div>
+                            <h3>Church Platform</h3>
+                            <p>Comprehensive management system with QR attendance tracking, servant database, and statistical analytics dashboard.</p>
+                            <div class="tags">
+                                <span>PHP</span><span>Analytics</span><span>Bootstrap</span>
+                            </div>
+                            <div class="card-links">
+                                <a href="#" class="link-btn">Details <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="section-padding" id="timeline">
-            <h2 class="section-title" data-aos="fade-up">Career Journey</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item left" data-aos="fade-right">
-                    <div class="content glass-card hover-glow">
-                        <span class="date">2021 - 2023</span>
-                        <h3>Full-Stack Web Foundation</h3>
-                        <p>Mastered building dynamic, responsive web applications using the LAMP stack.</p>
-                        <div class="mini-tags">
-                            <span>PHP</span><span>MySQL</span><span>Bootstrap</span>
-                        </div>
-                    </div>
+            <div class="container">
+                <div class="section-header">
+                    <h2>Engineering Timeline</h2>
                 </div>
-
-                <div class="timeline-item right" data-aos="fade-left">
-                    <div class="content glass-card hover-glow">
-                        <span class="date">2024 - Present</span>
-                        <h3>Embedded Systems & IoT</h3>
-                        <p>Specialized in Hardware-Software integration. Built Smart Class systems with AI Voice Control.</p>
-                        <div class="mini-tags">
-                            <span>ESP32</span><span>C++</span><span>IoT</span>
+                <div class="timeline-container">
+                    <div class="timeline-block" data-aos="fade-right">
+                        <div class="marker"></div>
+                        <div class="timeline-content spotlight">
+                            <h3>Advanced Software Engineering</h3>
+                            <span>2025 - Present</span>
+                            <p>Architecting enterprise desktop systems (Hospital & Crime Management) focusing on OOP, Design Patterns, and Database Normalization.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="timeline-item left" data-aos="fade-right">
-                    <div class="content glass-card hover-glow">
-                        <span class="date">2025</span>
-                        <h3>Advanced Software Engineering</h3>
-                        <p>Developing enterprise-level Desktop Systems (Hospital & Crime Mgmt) using Java OOP.</p>
-                        <div class="mini-tags">
-                            <span>Java</span><span>Swing</span><span>Design Patterns</span>
+                    <div class="timeline-block" data-aos="fade-left">
+                        <div class="marker"></div>
+                        <div class="timeline-content spotlight">
+                            <h3>Embedded Systems & IoT</h3>
+                            <span>2024</span>
+                            <p>Deep dive into Hardware-Software integration. Developed Smart Classroom automation and integrated AI voice control.</p>
                         </div>
                     </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="section-padding" id="projects">
-            <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
-            <div class="projects-grid">
-                
-                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-header">
-                        <div class="icon-square green"><i class="fas fa-microchip"></i></div>
-                        <div>
-                            <h3>Smart Voice Class</h3>
-                            <p class="card-sub">IoT & Automation</p>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Automated classroom using ESP32 & 4-Channel Relay. Features AI voice control & mobile app.</p>
-                        <div class="tech-stack">
-                            <span>ESP32</span><span>C++</span><span>Flutter</span>
-                        </div>
-                        <button class="btn-outline ripple" onclick="openModal('smart-class')">View Details</button>
-                    </div>
-                </div>
-
-                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-header">
-                        <div class="icon-square purple"><i class="fas fa-church"></i></div>
-                        <div>
-                            <h3>Church Platform</h3>
-                            <p class="card-sub">Management System</p>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Full tracking system for attendance, servants, and statistical reporting with Dashboard.</p>
-                        <div class="tech-stack">
-                            <span>PHP</span><span>MySQL</span><span>Analytics</span>
-                        </div>
-                        <button class="btn-outline ripple" onclick="openModal('church-app')">View Details</button>
-                    </div>
-                </div>
-
-                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-header">
-                        <div class="icon-square blue"><i class="fas fa-hospital-user"></i></div>
-                        <div>
-                            <h3>Hospital ERP</h3>
-                            <p class="card-sub">Desktop Application</p>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Robust desktop software for patient appointments & billing using strict OOP principles.</p>
-                        <div class="tech-stack">
-                            <span>Java</span><span>Swing</span><span>SQL</span>
-                        </div>
-                        <button class="btn-outline ripple" onclick="openModal('hospital')">View Details</button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="section-padding" id="certs">
-            <div class="split-layout">
-                <div class="col-left" data-aos="fade-right">
-                    <h2 class="section-title left-align">Certifications</h2>
-                    <div class="cert-list">
-                        <div class="cert-item glass-card">
-                            <div class="cert-icon-box"><i class="fas fa-certificate"></i></div>
-                            <div>
-                                <h4>NTI Training (160 Hours)</h4>
-                                <p>Embedded Systems & IoT Specialization</p>
-                            </div>
-                        </div>
-                        <div class="cert-item glass-card">
-                            <div class="cert-icon-box"><i class="fas fa-code"></i></div>
-                            <div>
-                                <h4>ITI Web Development</h4>
-                                <p>Building Web Apps with PHP & MySQL</p>
-                            </div>
-                        </div>
-                        <div class="cert-item glass-card">
-                            <div class="cert-icon-box"><i class="fas fa-brain"></i></div>
-                            <div>
-                                <h4>AI For Everyone (ITI)</h4>
-                                <p>Machine Learning Fundamentals</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-right" data-aos="fade-left">
-                    <h2 class="section-title left-align">Engineering Dashboard</h2>
-                    <div class="dashboard-grid">
-                        <div class="card glass-card chart-card">
-                            <div class="card-header small-header">
-                                <h3>Tech Proficiency</h3>
-                            </div>
-                            <div class="chart-box">
-                                <canvas id="myChart"></canvas>
-                            </div>
-                        </div>
-                        <div class="card glass-card">
-                            <div class="card-header small-header">
-                                <h3>Dev Tools</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="input-group-row">
-                                    <input type="number" id="calc-price" placeholder="Price">
-                                    <input type="number" id="calc-qty" placeholder="Qty">
-                                </div>
-                                <button id="do-calc" class="btn-primary-sm">Calculate</button>
-                                <div id="calc-result" class="calc-res">0.00 EGP</div>
-                            </div>
+                    <div class="timeline-block" data-aos="fade-right">
+                        <div class="marker"></div>
+                        <div class="timeline-content spotlight">
+                            <h3>Full-Stack Foundation</h3>
+                            <span>2021 - 2023</span>
+                            <p>Mastered web fundamentals (LAMP Stack) and built dynamic responsive applications.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="footer">
-            <p>© 2025 Kerullus Ashraf. All rights reserved.</p>
-        </footer>
+        <section id="contact" class="section-padding">
+            <div class="container footer-cta">
+                <div class="cta-box spotlight">
+                    <h2>Let's Engineer Something Great</h2>
+                    <p>Open for opportunities in Embedded Systems, Software Engineering, and AI.</p>
+                    <a href="mailto:kerullusashraf13@gmail.com" class="btn-primary big-btn">Initialize Contact</a>
+                    <div class="footer-socials">
+                        <a href="https://github.com/keroashraf12"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/kerullusashraff/"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <p class="copyright">© 2025 Kerullus Ashraf. Engineered with Precision.</p>
+            </div>
+        </section>
 
     </main>
 
-    <div id="project-modal" class="modal">
-        <div class="modal-content glass-card">
-            <span class="close-modal">&times;</span>
-            <h2 id="modal-title">Project Title</h2>
-            <div class="modal-tags" id="modal-tags"></div>
-            <div class="modal-body">
-                <p id="modal-desc">Description goes here...</p>
-                <div class="modal-features">
-                    <h4>Key Features:</h4>
-                    <ul id="modal-features-list"></ul>
-                </div>
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            
+            <div class="modal-header">
+                <h2 id="modal-title">Project Title</h2>
+                <div class="modal-tags" id="modal-tags"></div>
             </div>
-            <div class="modal-actions">
-                <a href="#" class="btn-primary-sm">Live Demo</a>
-                <a href="https://github.com/keroashraf12" class="btn-outline">GitHub Repo</a>
+
+            <div class="modal-body">
+                <div class="gallery-main">
+                    <img id="modal-main-img" src="" alt="Project Highlight">
+                </div>
+                
+                <div class="modal-info">
+                    <p id="modal-desc">Project description...</p>
+                    <div class="modal-actions">
+                        <a id="modal-github" href="#" target="_blank" class="btn-primary">
+                            <i class="fab fa-github"></i> View Source Code
+                        </a>
+                    </div>
+                </div>
+
+                <h4 style="margin: 25px 0 15px; color: var(--text-main); border-top: 1px solid var(--border); padding-top: 20px;">Project Gallery</h4>
+                <div class="gallery-grid" id="modal-gallery-grid"></div>
             </div>
         </div>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
