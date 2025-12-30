@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // 1. Initialize Animations (AOS)
     AOS.init({
         duration: 800,
         offset: 50,
         once: true
     });
 
+    // 2. Spotlight Effect Logic
     const spotlights = document.querySelectorAll('.spotlight');
     document.addEventListener('mousemove', (e) => {
         spotlights.forEach(card => {
@@ -17,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 3. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -27,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 4. Navbar Scroll Effect
     const nav = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -38,9 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 5. Project Modal Logic
     const modal = document.getElementById('project-modal');
     const modalClose = document.querySelector('.modal-close');
     const projectBtns = document.querySelectorAll('.open-modal');
+
+    // UI Elements inside Modal
     const mTitle = document.getElementById('modal-title');
     const mDesc = document.getElementById('modal-desc');
     const mGithub = document.getElementById('modal-github');
@@ -76,13 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             mGallery.innerHTML = '';
+            // Add main image to gallery as well
             const allImages = [mainImg, ...images]; 
             const uniqueImages = [...new Set(allImages)];
+
             uniqueImages.forEach(imgSrc => {
                 if(imgSrc && imgSrc.trim() !== "") {
                     const img = document.createElement('img');
                     img.src = imgSrc.trim();
                     img.alt = "Project Screenshot";
+                    
                     img.onclick = function() {
                         mMainImg.src = this.src;
                         document.querySelectorAll('.gallery-grid img').forEach(i => i.style.opacity = '0.6');
@@ -106,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto'; 
-        }, 300);=
+        }, 300);
     };
 
     if(modalClose) modalClose.addEventListener('click', closeModal);
@@ -116,7 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === modal) closeModal();
         });
     }
-const mobileBtn = document.querySelector('.mobile-toggle');
+
+    // 6. Mobile Menu Logic (Fixed)
+    const mobileBtn = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
     const links = document.querySelectorAll('.nav-links a');
 
@@ -139,9 +151,11 @@ const mobileBtn = document.querySelector('.mobile-toggle');
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
             const icon = mobileBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+            if(icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     });
-});
 
+});
